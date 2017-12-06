@@ -2,12 +2,14 @@ var gulp = require("gulp");
 var browserify = require("browserify");
 var source = require('vinyl-source-stream');
 var watchify = require("watchify");
+
 var tsify = require("tsify");
 var gutil = require("gulp-util");
 var sourcemaps = require('gulp-sourcemaps');
 var fileinclude  = require('gulp-file-include');
 var buffer = require('vinyl-buffer');
-var paths = {
+
+var paths = { 
     pages: [
         'src/pages/index/*.html',
         'src/pages/view/*.html',
