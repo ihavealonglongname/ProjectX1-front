@@ -1,39 +1,33 @@
 /// <reference path="./../../../node_modules/@types/jquery/index.d.ts" />
 
-import { sayHello } from "./greet";
+import { CommonBase } from "./../base/CommonBase";
 
-function showHello(divName: string, name: string) {
-    const elt = document.getElementById(divName);
-    elt.innerText = sayHello(name);
-    $("#test").text("0000000000");
-    console.log("00000000000000");
+class Entry extends CommonBase {
+    //1:西歴
+    //2:新元号
+    //3:平成
+    //4:昭和
+    //5:大正
+    //6:明治
+    private targetIndex: string;
 
-    $(".list-group-item").on('click',function(){
-        console.log($(this).text());
-    });
-    // $(".list-group-item").each(function(){
-    //     alert( $(this).text());
-    // });
+    public Init(){
+        super.Init();
 
-    $("#cal").on('click',function(){
-        console.log("1234567e89");
-    });
+        //当ページ該当するメニューを取得する。
+        this.targetIndex = this.getUrlParam("ti");
+        if(this.targetIndex == null){
+            this.targetIndex = "3"
+        }
+        
+        this.execute();
+    }
 
-    $("#h").on('click',function(){
-        console.log("11111111111");
-    });
-    
-    $("#s").on('click',function(){
-        console.log($(this).text());
-    });
-    
-    $("#d").on('click',function(){
-        console.log($(this).text());
-    });
-    
-    $("#m").on('click',function(){
-        console.log($(this).text());
-    });
+    //画面内容を生成する。
+    execute() {
+        super.ELEContent("right-title","昭和");
+    }
 }
 
-showHello("greeting", "TypeScripts");
+let target = new Entry();
+target.Init();
