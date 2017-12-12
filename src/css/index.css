@@ -1,3 +1,13 @@
 .year_list{
     color: black;
 }
+
+/* .navbar{
+    border-bottom: 1px solid #000000;
+    background-color: white;
+} */
+
+.left-nav-li{
+    color: white;
+    background-color: gray;
+}

@@ -14,6 +14,26 @@ function showHello(divName: string, name: string) {
     // $(".list-group-item").each(function(){
     //     alert( $(this).text());
     // });
+
+    $("#cal").on('click',function(){
+        console.log("1234567e89");
+    });
+
+    $("#h").on('click',function(){
+        console.log("11111111111");
+    });
+    
+    $("#s").on('click',function(){
+        console.log($(this).text());
+    });
+    
+    $("#d").on('click',function(){
+        console.log($(this).text());
+    });
+    
+    $("#m").on('click',function(){
+        console.log($(this).text());
+    });
 }
 
 showHello("greeting", "TypeScripts");
