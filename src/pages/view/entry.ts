@@ -74,7 +74,7 @@ class entry{
          fnUpdateTabs();
         //-->
         </script>
-        <![endif]>
+        <![endif]>　
         </head>
         
         <body link="#0563C1" vlink="#954F72" class=xl66>
