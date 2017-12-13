@@ -4,17 +4,17 @@ export class LeftArea{
     }
 
     public Init() {
-        $("#left-area-n").on('click',this.f_n);
-        $("#left-area-k").on('click',this.f_k);
-        $("#left-area-h").on('click',this.f_h);
-        $("#left-area-s").on('click',this.f_s);
-        $("#left-area-t").on('click',this.f_t);
-        $("#left-area-m").on('click',this.f_m);
+        $("#left-area-1").on('click',this.f_n);
+        $("#left-area-2").on('click',this.f_k);
+        $("#left-area-3").on('click',this.f_h);
+        $("#left-area-4").on('click',this.f_s);
+        $("#left-area-5").on('click',this.f_t);
+        $("#left-area-6").on('click',this.f_m);
     }
 
     //西歴
     private f_n(){
-        window.location.href = "index.html?ti=1";        
+        window.location.href = "index.html?ti=1";
     }
 
     //新元号
@@ -40,5 +40,15 @@ export class LeftArea{
     //明治
     private f_m(){
         window.location.href = "index.html?ti=6";
+    }
+
+    public f_active(target:string){
+        $("#left-area-1").removeClass("active");
+        $("#left-area-2").removeClass("active");
+        $("#left-area-3").removeClass("active");
+        $("#left-area-4").removeClass("active");
+        $("#left-area-5").removeClass("active");
+        $("#left-area-6").removeClass("active");
+        $("#left-area-"+target).addClass("active");
     }
 }

@@ -20,4 +20,8 @@ export class CommonBase {
     ELEContent(id: string,content: string){
         $("#" + id).html(content);
     }
+
+    f_active(target: string){
+        this.left_area.f_active(target);
+    }
 }
