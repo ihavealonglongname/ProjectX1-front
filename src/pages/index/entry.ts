@@ -11,6 +11,7 @@ import { data_YEAR } from './../data/data_Year';
 
 //各年の情報
 import { YearInfoList } from './YearInfoList';
+import { YearInfoList_Sei } from './YearInfoList_Sei';
 import { YearInfo } from './YearInfo';
 
 class Entry extends CommonBase {
@@ -24,7 +25,6 @@ class Entry extends CommonBase {
 
     public Init() {
         super.Init();
-
         //当ページ該当するメニューを取得する。
         this.targetIndex = this.getUrlParam("ti");
         if (this.targetIndex == null) {
@@ -51,7 +51,6 @@ class Entry extends CommonBase {
 
         //該当年号のコメントを表示する
         super.ELEContent("right-desc", gengo_info.desc);
-        console.log((1878 - 1863) % 12);
         if (this.targetIndex != "1") {
             //西暦以外の場合、該当年号の情報を表示する
             let yearInfoList: YearInfoList = new YearInfoList(gengo_info);
@@ -73,7 +72,7 @@ class Entry extends CommonBase {
                 </ruby>
             </td>
             <td>` + yearInfo.age + `</td>
-            <td><a target="_blank" href="view.html?a=` + yearInfo.sei + `">年齢早見表` + yearInfo.sei + `＞＞</a></td>
+            <!--<td><a target="_blank" href="view.html?a=` + yearInfo.sei + `">年齢早見表` + yearInfo.sei + `＞＞</a></td>-->
         </tr>　
             `)
             }
@@ -83,6 +82,32 @@ class Entry extends CommonBase {
             //「和暦」と「和暦」を置き換える
             super.ELEContent("right-wareki", "西暦");
             super.ELEContent("right-seireki", "和暦");
+
+            //
+
+            let yearInfoList_Sei: YearInfoList_Sei = new YearInfoList_Sei(gengo_info);
+            for (let yearInfo of yearInfoList_Sei.getData()) {
+                $("tbody").append(`
+            <tr>
+            <td>` + yearInfo.sei + `</td>
+            <td>` + yearInfo.wa + `</td>
+            <td>
+                <ruby>
+                    ` + yearInfo.shi.name + `<rt>` + yearInfo.shi.rt + `</rt>
+                </ruby>
+            </td>
+            <td>
+                <ruby>
+                ` + yearInfo.kan.name + `<rt>` + yearInfo.kan.rt + `</rt>
+                ` + yearInfo.shi.name + `<rt>` + yearInfo.shi.rt + `</rt>
+                </ruby>
+            </td>
+            <td>` + yearInfo.age + `</td>
+            <!--<td><a target="_blank" href="view.html?a=` + yearInfo.sei + `">年齢早見表` + yearInfo.sei + `＞＞</a></td>-->
+        </tr>　
+            `)
+
+            }
         }
 
     }

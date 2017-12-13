@@ -32,32 +32,58 @@ export class YearInfoList{
             yearInfo.sei = i.toString();
 
             //和暦
-            let waYear: string = (i - Number(startDate.getFullYear()) + 1).toString();
-            if(i - Number(startDate.getFullYear()) == 0){ waYear = "元";}
-            yearInfo.wa = this.data.name + waYear + "年";
+            yearInfo.wa = this.getWareki(i,Number(startDate.getFullYear()));
             
             //支(1864年：甲子年)
-            let shi12Index:number = (i-1864)%12 + 1;
-            let shi12Data:model_Kanji=  data_shi12.find(x => x.id == shi12Index.toString());
-            yearInfo.shi = shi12Data;
+            yearInfo.shi = this.getShi12(i);
 
             //干(1864年：甲子年)
-            let kan10Index:number = (i-1864)%10 + 1;
-            let kan10Data:model_Kanji=  data_kan10.find(x => x.id == kan10Index.toString());
-            yearInfo.kan = kan10Data;
+            yearInfo.kan = this.getKan10(i);
 
             //年齢（満年齢）
-            let fullAge:number = data_YEAR - i;
-            if(fullAge < 0){
-                yearInfo.age = ""
-            }else{
-                yearInfo.age = "満 " + fullAge + " 歳";
-            }
+            yearInfo.age = this.getAge(i);
             
-
             yearInfoList.push(yearInfo);
         }
         return yearInfoList;
     }
+
+    protected getWareki(arg: number, startYear: number):string{
+        let waYear: string = (arg - startYear + 1).toString();
+        if(arg - startYear == 0){ waYear = "元";}
+        return this.data.name + waYear + "年";
+    }
+
+    /**
+     * 干情報を取得する
+     * @param arg 西暦年
+     */
+    protected getKan10(arg: number):model_Kanji{
+        let index:number = (arg-1864)%10 + 1;
+        return data_kan10.find(x => x.id == index.toString());
+    }
+
+    /**
+     * 支情報を取得する
+     * @param arg 西暦年
+     */
+    protected getShi12(arg: number):model_Kanji{
+        let index:number = (arg-1864)%12 + 1;
+        return data_shi12.find(x => x.id == index.toString());
+    }
+
+    /**
+     * 年齢情報を取得する
+     * @param arg 西暦年
+     */
+    protected getAge(arg: number):string{
+        let fullAge:number = data_YEAR - arg;
+        if(fullAge < 0){
+            return "-"
+        }else{
+            return "満 " + fullAge + " 歳";
+        }
+    }
+
 }
 
